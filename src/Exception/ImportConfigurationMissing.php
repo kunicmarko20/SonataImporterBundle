@@ -10,7 +10,7 @@ use RuntimeException;
 /**
  * @author Marko Kunic <kunicmarko20@gmail.com>
  */
-final class ImportClassMissing extends RuntimeException implements ImporterException
+final class ImportConfigurationMissing extends RuntimeException implements ImporterException
 {
     public function __construct(string $type)
     {

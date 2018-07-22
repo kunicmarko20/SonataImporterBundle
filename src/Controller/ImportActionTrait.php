@@ -4,19 +4,18 @@ declare(strict_types=1);
 
 namespace KunicMarko\SonataImporterBundle\Controller;
 
-use KunicMarko\SonataImporterBundle\Admin\AdminWithImport;
-use KunicMarko\SonataImporterBundle\Exception\AdminMissingInterface;
-use KunicMarko\SonataImporterBundle\Exception\ImportClassMissing;
+use KunicMarko\Importer\ImportConfiguration;
+use KunicMarko\SonataImporterBundle\Exception\AdminHasNoImportConfiguration;
+use KunicMarko\SonataImporterBundle\Exception\ImportConfigurationMissing;
 use KunicMarko\SonataImporterBundle\Form\AdminImport as AdminImportForm;
 use KunicMarko\SonataImporterBundle\DTO\AdminImport as AdminImportDTO;
-use KunicMarko\Importer\Import;
 use KunicMarko\Importer\ImporterFactory;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use KunicMarko\Importer\Exception\ImporterException;
-use function get_class;
 use Symfony\Component\HttpFoundation\Response;
+use function get_class;
 
 /**
  * @author Marko Kunic <kunicmarko20@gmail.com>
@@ -29,11 +28,21 @@ trait ImportActionTrait
     private $importerFactory;
 
     /**
+     * @var array
+     */
+    private $importConfigurations = [];
+
+    /**
      * @required
      */
     public function setImporterFactory(ImporterFactory $importerFactory): void
     {
         $this->importerFactory = $importerFactory;
+    }
+
+    public function setImportConfigurations(array $importConfigurations): void
+    {
+        $this->importConfigurations = $importConfigurations;
     }
 
     public function importAction(Request $request): Response
@@ -54,7 +63,7 @@ trait ImportActionTrait
             $importer = $this->importerFactory->getImporter($type = $import->file->getClientOriginalExtension());
 
             $importer
-                ->useImportClass($this->getImportClass($type))
+                ->useImportConfiguration($this->getImportConfiguration($type))
                 ->fromFile($import->file->getPathname())
                 ->import();
 
@@ -68,16 +77,18 @@ trait ImportActionTrait
         return new RedirectResponse($this->admin->generateUrl('list'));
     }
 
-    private function getImportClass(string $type): Import
+    private function getImportConfiguration(string $type): ImportConfiguration
     {
-        if (!$this->admin instanceof AdminWithImport) {
-            throw new AdminMissingInterface(get_class($this->admin));
+        if (!array_key_exists($adminClass = get_class($this->admin), $this->importConfigurations)) {
+            throw new AdminHasNoImportConfiguration($adminClass);
         }
 
-        if (!array_key_exists($type, $importClasses = $this->admin->getImportClasses())) {
-            throw new ImportClassMissing($type);
+        $configurations = $this->importConfigurations[$adminClass];
+
+        if (!array_key_exists($type, $configurations)) {
+            throw new ImportConfigurationMissing($type);
         }
 
-        return $importClasses[$type];
+        return $configurations[$type];
     }
 }

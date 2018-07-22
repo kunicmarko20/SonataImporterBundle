@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace KunicMarko\SonataImporterBundle;
 
-use KunicMarko\Importer\Import;
+use KunicMarko\Importer\ImportConfiguration;
 
 /**
  * @author Marko Kunic <kunicmarko20@gmail.com>
  */
-interface SonataImport extends Import
+interface SonataImportConfiguration extends ImportConfiguration
 {
     public static function adminClass(): string;
     public static function format(): string;

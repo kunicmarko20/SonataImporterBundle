@@ -20,7 +20,8 @@ Documentation
 * [How to use](#how-to-use)
     * [Prepare Admin Class](#prepare-admin-class)
     * [Prepare Controller](#prepare-controller)
-    * [Autoconfigure ImportClasses](#autoconfigure-importclasses)
+        * [Custom Controler](#custom-controller)
+    * [Autoconfigure ImportConfiguration](#autoconfigure-importconfiguration)
 
 ## Installation
 
@@ -55,54 +56,34 @@ sonata_importer:
 ## How to use
 
 If you haven't already go and read [Importer documentation](https://github.com/kunicmarko20/importer#how-to-use).
-I will assume you are already familiar with ImportClasses and I will just explain what is different in
+I will assume you are already familiar with ImportConfiguration and I will just explain what is different in
 this bundle.
 
 ### Prepare Admin Class
 
-Your Admin class has to extend `KunicMarko\SonataImporterBundle\Admin\AbstractImportAdmin`, if
-that is not possible you will have to use `KunicMarko\SonataImporterBundle\Admin\ImportAdminTrait`
-trait in your Admin Class.
+Your Admin class has to implement `KunicMarko\SonataImporterBundle\Admin\AdminWithImport`.
 
 ### Prepare Controller
 
-Your Admin service definition should have `KunicMarko\SonataImporterBundle\Controller\ImportCRUDController`
-as a controller.
+By default if you don't set Controller in your Admin service definition we will replace it
+with instance of `KunicMarko\SonataImporterBundle\Controller\ImportCRUDController`.
 
-```yaml
-# config/services.yaml
-services:
-    App\Admin\CategoryAdmin:
-        arguments:
-            - ~
-            - App\Entity\Category
-            - KunicMarko\SonataImporterBundle\Controller\ImportCRUDController
-        tags:
-            - { name: sonata.admin, manager_type: orm, group: admin, label: Category }
-```
+#### Custom Controller
 
-If that is not possible you will `KunicMarko\SonataImporterBundle\Controller\ImportActionTrait`
-trait in your controller and make sure you call the method `setImporterFactory`
-in your service definition:
+If you are using your own custom controller make sure it implements `KunicMarko\SonataImporterBundle\Controller\ControllerWithImport`,
+also you will have to add `KunicMarko\SonataImporterBundle\Controller\ImportActionTrait`
+trait to your controller.
 
-```xml
-<service id="KunicMarko\SonataImporterBundle\Controller\ImportCRUDController" public="true">
-    <call method="setImporterFactory">
-        <argument type="service" id="KunicMarko\Importer\ImporterFactory" />
-    </call>
-</service>
-```
+### AutoConfigure ImportConfiguration
 
-### Autoconfigure ImportClasses
-
-To be able to autoconfigure your ImportClasses they will have to implement
-`KunicMarko\SonataImporterBundle\SonataImport` and configure `format` and `adminClass` methods
+To be able to auto-configure your ImportConfiguration they will have to implement
+`KunicMarko\SonataImporterBundle\SonataImportConfiguration` and configure `format` and `adminClass` methods
 along with other methods.
 
 That will look like:
 
 ```php
-class CategoryCSVImport implements SonataImport
+class CategoryCSVImportConfiguration implements SonataImportConfiguration
 {
     /**
      * @var EntityManagerInterface

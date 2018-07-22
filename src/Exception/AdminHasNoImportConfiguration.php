@@ -11,14 +11,13 @@ use RuntimeException;
 /**
  * @author Marko Kunic <kunicmarko20@gmail.com>
  */
-final class AdminMissingInterface extends RuntimeException implements ImporterException
+final class AdminHasNoImportConfiguration extends RuntimeException implements ImporterException
 {
     public function __construct(string $adminClass)
     {
         parent::__construct(sprintf(
-            'Admin "%s" has to implement "%s".',
-            $adminClass,
-            AdminWithImport::class
+            'Admin "%s" has no import configurations.',
+            $adminClass
         ));
     }
 }

@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace KunicMarko\SonataImporterBundle\DependencyInjection;
 
-use KunicMarko\SonataImporterBundle\SonataImport;
+use KunicMarko\SonataImporterBundle\Admin\AdminWithImport;
+use KunicMarko\SonataImporterBundle\Controller\ControllerWithImport;
+use KunicMarko\SonataImporterBundle\SonataImportConfiguration;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
@@ -23,6 +25,13 @@ final class SonataImporterExtension extends ConfigurableExtension
         $loader->load('controllers.xml');
         $loader->load('extensions.xml');
 
-        $container->registerForAutoconfiguration(SonataImport::class)->addTag('sonata.importer');
+        $container->registerForAutoconfiguration(SonataImportConfiguration::class)
+            ->addTag('sonata.importer.configuration');
+
+        $container->registerForAutoconfiguration(ControllerWithImport::class)
+            ->addTag('sonata.importer.controller');
+
+        $container->registerForAutoconfiguration(AdminWithImport::class)
+            ->addTag('sonata.importer.admin');
     }
 }

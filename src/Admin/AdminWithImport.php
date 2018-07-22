@@ -9,5 +9,4 @@ namespace KunicMarko\SonataImporterBundle\Admin;
  */
 interface AdminWithImport
 {
-    public function getImportClasses(): array;
 }
