@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+    <file source-language="en" datatype="plaintext" original="SonataAdminBundle.en.xliff">
+        <body>
+            <trans-unit id="import_dashboard_button">
+                <source>import_dashboard_button</source>
+                <target>Import</target>
+            </trans-unit>
+            <trans-unit id="import_action_button">
+                <source>import_action_button</source>
+                <target>Import</target>
+            </trans-unit>
+            <trans-unit id="import_navbar_brand">
+                <source>import_navbar_brand</source>
+                <target>Import</target>
+            </trans-unit>
+            <trans-unit id="import_box_title">
+                <source>import_box_title</source>
+                <target>Import</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

@@ -1,0 +1,43 @@
+{% extends get_admin_template('layout', admin.code) %}
+
+{% block sonata_page_content_nav %}
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="navbar-header">
+            <span class="navbar-brand">{{ 'import_navbar_brand'|trans({}, 'SonataImporterBundle') }}</span>
+        </div>
+    </nav>
+{% endblock %}
+
+{% block sonata_admin_content %}
+    {% block notice %}
+        {% include 'SonataCoreBundle:FlashMessage:render.html.twig' %}
+    {% endblock notice %}
+
+    <div class="sonata-ba-form">
+        {{ form_start(form) }}
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="box box-success">
+                            <div class="box-header">
+                                <h4 class="box-title">{{ 'import_box_title'|trans({}, 'SonataImporterBundle') }}</h4>
+                            </div>
+                            <div class="box-body">
+                                <div class="sonata-ba-collapsed-fields">
+                                    {{ form_row(form.file) }}
+                                    {{ form_row(form._token) }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="well well-small form-actions">
+            {{ form_widget(form.import) }}
+        </div>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

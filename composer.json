@@ -1,0 +1,51 @@
+{
+    "name": "kunicmarko/sonata-importer-bundle",
+    "type": "symfony-bundle",
+    "description": "Easier handling of Import in Sonata Admin.",
+    "keywords": [
+        "importer",
+        "excel",
+        "csv",
+        "json",
+        "xml",
+        "symfony",
+        "sonata"
+    ],
+    "homepage": "https://github.com/kunicmarko20/SonataImporterBundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Marko Kunic",
+            "email": "kunicmarko20@gmail.com",
+            "homepage": "https://twitter.com/kunicmarko20"
+        }
+    ],
+    "require": {
+        "php": "^7.1",
+        "kunicmarko/importer": "^0.1.0",
+        "sonata-project/admin-bundle": "^3.35",
+        "symfony/config": "^3.4 || ^4.0",
+        "symfony/dependency-injection": "^3.4 || ^4.0",
+        "symfony/form": "^3.4 || ^4.0",
+        "symfony/http-foundation": "^3.4 || ^4.0",
+        "symfony/http-kernel": "^3.4 || ^4.0",
+        "symfony/options-resolver": "^3.4 || ^4.0",
+        "symfony/validator": "^3.4 || ^4.0"
+    },
+    "require-dev": {
+        "matthiasnoback/symfony-dependency-injection-test": "^3.0"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "autoload": {
+        "psr-4": {
+            "KunicMarko\\SonataImporterBundle\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "KunicMarko\\SonataImporterBundle\\Tests\\": "tests/"
+        }
+    }
+}
