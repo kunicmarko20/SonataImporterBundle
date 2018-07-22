@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace KunicMarko\SonataImporterBundle\Controller;
 
 use Sonata\AdminBundle\Controller\CRUDController;

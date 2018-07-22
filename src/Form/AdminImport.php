@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace KunicMarko\SonataImporterBundle\Form;
 
 use KunicMarko\SonataImporterBundle\DTO\AdminImport as AdminImportDTO;

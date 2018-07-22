@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace KunicMarko\SonataImporterBundle\DependencyInjection\Compiler;
 
 use KunicMarko\SonataImporterBundle\Exception\AdminClassNotFound;
@@ -21,11 +23,11 @@ final class AddImportClassesToAdminCompilerPass implements CompilerPassInterface
         foreach ($container->findTaggedServiceIds('sonata.importer') as $id => $tag) {
             $importClassDefinition = $container->getDefinition($id);
 
-            /** @var $importClass SonataImport */
             if (!is_subclass_of($importClass = $importClassDefinition->getClass(), SonataImport::class)) {
                 throw new ImportClassMissingInterface($importClass);
             }
 
+            /** @var $importClass SonataImport */
             $admins[$importClass::adminClass()] = [$importClass::format() => $importClassDefinition];
         }
 

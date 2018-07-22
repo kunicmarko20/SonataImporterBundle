@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace KunicMarko\SonataImporterBundle\Controller;
 
 use KunicMarko\SonataImporterBundle\Admin\AdminWithImport;
@@ -14,6 +16,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use KunicMarko\Importer\Exception\ImporterException;
 use function get_class;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * @author Marko Kunic <kunicmarko20@gmail.com>
@@ -33,7 +36,7 @@ trait ImportActionTrait
         $this->importerFactory = $importerFactory;
     }
 
-    public function importAction(Request $request)
+    public function importAction(Request $request): Response
     {
         /** @var FormInterface $form */
         $form = $this->createForm(AdminImportForm::class, $import = new AdminImportDTO());
@@ -52,7 +55,7 @@ trait ImportActionTrait
 
             $importer
                 ->useImportClass($this->getImportClass($type))
-                ->fromFile($import->file)
+                ->fromFile($import->file->getPathname())
                 ->import();
 
             $this->addFlash('success', 'Imported successfully.');

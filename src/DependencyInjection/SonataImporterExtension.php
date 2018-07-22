@@ -15,11 +15,12 @@ use Symfony\Component\HttpKernel\DependencyInjection\ConfigurableExtension;
  */
 final class SonataImporterExtension extends ConfigurableExtension
 {
-    protected function loadInternal(array $mergedConfig, ContainerBuilder $container)
+    protected function loadInternal(array $mergedConfig, ContainerBuilder $container): void
     {
         $container->setParameter('sonata.importer.templates', $mergedConfig['templates']);
 
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+        $loader->load('controllers.xml');
         $loader->load('extensions.xml');
 
         $container->registerForAutoconfiguration(SonataImport::class)->addTag('sonata.importer');

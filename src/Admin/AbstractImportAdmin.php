@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace KunicMarko\SonataImporterBundle\Admin;
 
 use Sonata\AdminBundle\Admin\AbstractAdmin;

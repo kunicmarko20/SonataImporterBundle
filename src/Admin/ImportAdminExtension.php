@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace KunicMarko\SonataImporterBundle\Admin;
 
 use Sonata\AdminBundle\Admin\AbstractAdminExtension;
@@ -9,7 +11,7 @@ use Sonata\AdminBundle\Route\RouteCollection;
 /**
  * @author Marko Kunic <kunicmarko20@gmail.com>
  */
-class ImportAdminExtension extends AbstractAdminExtension
+final class ImportAdminExtension extends AbstractAdminExtension
 {
     /**
      * @var array
@@ -21,7 +23,7 @@ class ImportAdminExtension extends AbstractAdminExtension
         $this->templates = $templates;
     }
 
-    public function configureRoutes(AdminInterface $admin, RouteCollection $collection)
+    public function configureRoutes(AdminInterface $admin, RouteCollection $collection): void
     {
         if (!$admin instanceof AdminWithImport) {
             return;
@@ -30,14 +32,14 @@ class ImportAdminExtension extends AbstractAdminExtension
         $collection->add('import');
     }
 
-    public function configureActionButtons(AdminInterface $admin, $list, $action, $object)
+    public function configureActionButtons(AdminInterface $admin, $list, $action, $object): array
     {
         $list['import']['template'] = $this->templates['action_button'];
 
         return $list;
     }
 
-    public function configureDashboardActions(AdminInterface $admin, $actions)
+    public function configureDashboardActions(AdminInterface $admin, $actions): array
     {
         $actions['import']['template'] = $this->templates['dashboard_action'];
 
