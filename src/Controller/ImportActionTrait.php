@@ -70,7 +70,7 @@ trait ImportActionTrait
         if (!$this->admin instanceof AdminWithImport) {
             throw new AdminMissingInterface(get_class($this->admin));
         }
-        dump($this->admin->getImportClasses());
+
         if (!array_key_exists($type, $importClasses = $this->admin->getImportClasses())) {
             throw new ImportClassMissing($type);
         }

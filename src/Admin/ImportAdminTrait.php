@@ -2,6 +2,8 @@
 
 namespace KunicMarko\SonataImporterBundle\Admin;
 
+use KunicMarko\SonataImporterBundle\SonataImport;
+
 /**
  * @author Marko Kunic <kunicmarko20@gmail.com>
  */
@@ -10,7 +12,7 @@ trait ImportAdminTrait
     /**
      * @var array
      */
-    protected $importClasses = [];
+    private $importClasses = [];
 
     public function getImportClasses(): array
     {
@@ -20,5 +22,10 @@ trait ImportAdminTrait
     public function setImportClasses(array $importClasses): void
     {
         $this->importClasses = $importClasses;
+    }
+
+    public function addImportClass(string $key, SonataImport $importClass): void
+    {
+        $this->importClasses[$key] = $importClass;
     }
 }
