@@ -6,8 +6,8 @@ Easier handling of Import in Sonata Admin.
 Built on top of [Importer](https://github.com/kunicmarko20/importer).
 
 [![PHP Version](https://img.shields.io/badge/php-%5E7.1-blue.svg)](https://img.shields.io/badge/php-%5E7.1-blue.svg)
-[![Latest Stable Version](https://poser.pugx.org/kunicmarko/SonataImporterBundle/v/stable)](https://packagist.org/packages/kunicmarko/SonataImporterBundle)
-[![Latest Unstable Version](https://poser.pugx.org/kunicmarko/SonataImporterBundle/v/unstable)](https://packagist.org/packages/kunicmarko/SonataImporterBundle)
+[![Latest Stable Version](https://poser.pugx.org/kunicmarko/sonata-importer-bundle/v/stable)](https://packagist.org/packages/kunicmarko/sonata-importer-bundle)
+[![Latest Unstable Version](https://poser.pugx.org/kunicmarko/sonata-importer-bundle/v/unstable)](https://packagist.org/packages/kunicmarko/sonata-importer-bundle)
 
 [![Build Status](https://travis-ci.org/kunicmarko20/SonataImporterBundle.svg?branch=master)](https://travis-ci.org/kunicmarko20/SonataImporterBundle)
 [![Coverage Status](https://coveralls.io/repos/github/kunicmarko20/SonataImporterBundle/badge.svg?branch=master)](https://coveralls.io/github/kunicmarko20/SonataImporterBundle?branch=master)

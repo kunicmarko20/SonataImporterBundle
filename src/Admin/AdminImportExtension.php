@@ -11,7 +11,7 @@ use Sonata\AdminBundle\Route\RouteCollection;
 /**
  * @author Marko Kunic <kunicmarko20@gmail.com>
  */
-final class ImportAdminExtension extends AbstractAdminExtension
+final class AdminImportExtension extends AbstractAdminExtension
 {
     /**
      * @var array

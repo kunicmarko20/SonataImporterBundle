@@ -4,7 +4,7 @@
         <defaults>
             <bind key="$templates">%sonata.importer.templates%</bind>
         </defaults>
-        <service id="KunicMarko\SonataImporterBundle\Admin\ImportAdminExtension">
+        <service id="KunicMarko\SonataImporterBundle\Admin\AdminImportExtension">
             <tag name="sonata.admin.extension" global="true"/>
         </service>
     </services>
