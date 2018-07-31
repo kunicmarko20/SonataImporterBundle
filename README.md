@@ -12,6 +12,11 @@ Built on top of [Importer](https://github.com/kunicmarko20/importer).
 [![Build Status](https://travis-ci.org/kunicmarko20/SonataImporterBundle.svg?branch=master)](https://travis-ci.org/kunicmarko20/SonataImporterBundle)
 [![Coverage Status](https://coveralls.io/repos/github/kunicmarko20/SonataImporterBundle/badge.svg?branch=master)](https://coveralls.io/github/kunicmarko20/SonataImporterBundle?branch=master)
 
+
+![Import Action](docs/images/import_action.png)
+
+![Import Form](docs/images/import_form.png)
+
 Documentation
 -------------
 

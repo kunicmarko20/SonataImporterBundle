@@ -11,3 +11,4 @@ Makefile          export-ignore
 /.travis/         export-ignore
 /.github/         export-ignore
 /tests/           export-ignore
+/docs/            export-ignore
