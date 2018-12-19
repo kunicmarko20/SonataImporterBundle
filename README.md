@@ -41,6 +41,7 @@ composer require kunicmarko/sonata-importer-bundle
 ```php
 return [
     //...
+    KunicMarko\Importer\Bridge\Symfony\ImporterBundle::class => ['all' => true],
     KunicMarko\SonataImporterBundle\SonataImporterBundle::class => ['all' => true],
 ];
 ```
