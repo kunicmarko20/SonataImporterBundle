@@ -33,9 +33,7 @@ class AdminImportExtensionTest extends TestCase
         $routeCollection = $this->prophesize(RouteCollection::class);
         $routeCollection->add(Argument::type('string'))->shouldBeCalled();
 
-        $this->extension->configureRoutes(new class('', '', '') extends AbstractAdmin implements AdminWithImport {
-
-        }, $routeCollection->reveal());
+        $this->extension->configureRoutes($this->getAdminWithImport(), $routeCollection->reveal());
     }
 
     public function testConfigureRoutesNoCall()
@@ -52,13 +50,26 @@ class AdminImportExtensionTest extends TestCase
         };
     }
 
+    private function getAdminWithImport(): AdminInterface
+    {
+        return new class('', '', '') extends AbstractAdmin implements AdminWithImport {
+
+        };
+    }
+
     public function testConfigureActionButtons(): void
     {
-        $result = $this->extension->configureActionButtons($this->getAdmin(), [], null, null);
+        $result = $this->extension->configureActionButtons($this->getAdminWithImport(), [], null, null);
 
         $this->assertArrayHasKey('import', $result);
         $this->assertArrayHasKey('template', $result['import']);
         $this->assertSame('action_button_template', $result['import']['template']);
+    }
+
+    public function testConfigureActionButtonsNoImport(): void
+    {
+        $result = $this->extension->configureActionButtons($this->getAdmin(), [], null, null);
+        $this->assertArrayNotHasKey('import', $result);
     }
 
     public function testConfigureDashboardActions(): void
