@@ -111,7 +111,7 @@ class AutoConfigureCompilerPassTest extends TestCase
     public function testProcessControllerMissingMethod(): void
     {
         $this->containerBuilder->setDefinition(
-            'import admin that isn\'t sonata admin',
+            'not.sonata.admin',
             (new Definition(
                 Admin::class,
                 [

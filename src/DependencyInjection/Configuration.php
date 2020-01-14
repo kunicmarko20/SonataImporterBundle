@@ -14,10 +14,9 @@ final class Configuration implements ConfigurationInterface
 {
     public function getConfigTreeBuilder(): TreeBuilder
     {
-        $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('sonata_importer');
+        $treeBuilder = new TreeBuilder('sonata_importer');
 
-        $rootNode
+        $treeBuilder->getRootNode()
             ->children()
                 ->arrayNode('templates')
                     ->addDefaultsIfNotSet()
