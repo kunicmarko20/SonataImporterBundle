@@ -16,7 +16,14 @@ final class Configuration implements ConfigurationInterface
     {
         $treeBuilder = new TreeBuilder('sonata_importer');
 
-        $treeBuilder->getRootNode()
+        if (\method_exists($treeBuilder, 'getRootNode')) {
+            $rootNode = $treeBuilder->getRootNode();
+        } else {
+            // BC layer for symfony/config 4.1 and older
+            $rootNode = $treeBuilder->root('sonata_importer');
+        }
+
+        $rootNode
             ->children()
                 ->arrayNode('templates')
                     ->addDefaultsIfNotSet()
