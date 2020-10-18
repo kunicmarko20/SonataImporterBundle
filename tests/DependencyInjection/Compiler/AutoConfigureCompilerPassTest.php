@@ -10,6 +10,7 @@ use KunicMarko\SonataImporterBundle\Tests\Fixtures\Admin;
 use KunicMarko\SonataImporterBundle\Tests\Fixtures\Controller;
 use KunicMarko\SonataImporterBundle\Tests\Fixtures\ImportConfiguration;
 use PHPUnit\Framework\TestCase;
+use Sonata\AdminBundle\Controller\CRUDController;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
 
@@ -43,7 +44,7 @@ class AutoConfigureCompilerPassTest extends TestCase
                 [
                     0,
                     1,
-                    'SonataAdminBundle:CRUD'
+                    CRUDController::class,
                 ]
             )
             )->setTags([
@@ -117,7 +118,7 @@ class AutoConfigureCompilerPassTest extends TestCase
                 [
                     0,
                     1,
-                    'SonataAdminBundle:CRUD'
+                    CRUDController::class,
                 ]
             )
             )->setTags([
