@@ -10,6 +10,7 @@ use KunicMarko\SonataImporterBundle\Exception\AdminClassNotFound;
 use KunicMarko\SonataImporterBundle\Exception\ControllerMissingMethod;
 use KunicMarko\SonataImporterBundle\Exception\ImportConfigurationMissingInterface;
 use KunicMarko\SonataImporterBundle\SonataImportConfiguration;
+use Sonata\AdminBundle\Controller\CRUDController;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
@@ -19,8 +20,6 @@ use Symfony\Component\DependencyInjection\Definition;
  */
 final class AutoConfigureCompilerPass implements CompilerPassInterface
 {
-    private const DEFAULT_SONATA_CONTROLLER = 'SonataAdminBundle:CRUD';
-
     public function process(ContainerBuilder $container): void
     {
         $configurations = [];
@@ -64,7 +63,7 @@ final class AutoConfigureCompilerPass implements CompilerPassInterface
 
     private function isDefaultControllerRegistered(Definition $definition): bool
     {
-        return $definition->getArgument(2) === self::DEFAULT_SONATA_CONTROLLER;
+        return $definition->getArgument(2) === CRUDController::class;
     }
 
     private function replaceDefaultControllerWithImportController(Definition $definition): void
