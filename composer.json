@@ -24,6 +24,7 @@
         "php": "^7.1",
         "kunicmarko/importer": "^0.2.0",
         "sonata-project/admin-bundle": "^3.35",
+        "sonata-project/twig-extensions": "^1.4",
         "symfony/config": "^3.4 || ^4.0",
         "symfony/dependency-injection": "^3.4 || ^4.0",
         "symfony/form": "^3.4 || ^4.0",
