@@ -30,18 +30,24 @@ Documentation
 
 ## Installation
 
-**1.**  Add dependency with composer
+Because Symfony Flex auto-detects and then registers bundles on its own, you first need to install `kunicmarko/importer`,
+add it to `bundles.php`, and then do the same thing for `kunicmarko/sonata-importer-bundle`.
+
+**1.** Install kunicmarko/importer
+
+First you need to install `kunicmarko/importer`, and register the bundle by following [this](https://github.com/kunicmarko20/importer#installation) guide.
+
+**2.**  Add dependency with composer
 
 ```bash
 composer require kunicmarko/sonata-importer-bundle
 ```
 
-**2.** Register the bundle in your Kernel
+**3.** Register the bundle in your Kernel
 
 ```php
 return [
     //...
-    KunicMarko\Importer\Bridge\Symfony\ImporterBundle::class => ['all' => true],
     KunicMarko\SonataImporterBundle\SonataImporterBundle::class => ['all' => true],
 ];
 ```
